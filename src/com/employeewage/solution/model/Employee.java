@@ -5,7 +5,6 @@ public class Employee{
 	private int dailyWagePerHour,workHour,fullDayHour,pay;
 
 	public Employee(int dailyWagePerHour, int workHour, int fullDayHour){
-		//this.setTypeEmployee("Part-Time");
 		this.dailyWagePerHour = dailyWagePerHour;
 		this.workHour = workHour;
 		this.fullDayHour = fullDayHour;
@@ -56,22 +55,3 @@ public class Employee{
 		return "Type : " + this.typeEmployee + "\n Wage per hour : " + this.dailyWagePerHour + "\n WorkHour : " + this.workHour + "\n FullDay hour :" + this.fullDayHour + "\n Total Pay : " + this.pay;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
