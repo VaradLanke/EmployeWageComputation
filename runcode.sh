@@ -1,2 +1,3 @@
 #! /bin/bash
-java -cp ./classes com.employeewage.solution.$1
+
+java -cp ./classes/ com.employeewage.solution.test.Tester
