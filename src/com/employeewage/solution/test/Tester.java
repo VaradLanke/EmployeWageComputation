@@ -1,9 +1,7 @@
 package com.employeewage.solution.test;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.InputMismatchException;
-import com.employeewage.solution.model.Employee;
-import com.employeewage.solution.service.EmployeeWageCompute;
+import java.util.*;
+import com.employeewage.solution.model.*;
+import com.employeewage.solution.service.*;
 
 class Tester{
 
@@ -28,8 +26,8 @@ class Tester{
 			System.out.println("Welcome to Employee Wage Computation Program");
 			System.out.println("---------------------------------------------");
 			Random sysRand = new Random();
-			EmployeeWageCompute computer = new EmployeeWageCompute();
-			Employee emp = new Employee(20,sysRand.nextInt(9),8);
+			EmployeeWageComputeService computer = new EmployeeWageCompute();
+			Employee emp = new Employee(sysRand.nextInt(9));
 
 			while(true){
 				int option = wageMenu();
@@ -56,11 +54,9 @@ class Tester{
 						System.out.println("Invalid Choice!!");
 						break;
 					}
-
 				}
 			}catch(InputMismatchException e){
 				System.out.println("Wrong Input by User, expected number");
 		}
 	}	
-
 }
