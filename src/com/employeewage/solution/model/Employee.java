@@ -1,12 +1,16 @@
 package com.employeewage.solution.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee{
 
-	private String typeEmployee;
-	private int workHour,pay;
+	private String typeEmployee,companyName;
+	private int pay;
+	private List<Integer> dailyWages;
 
-	public Employee(int workHour){
-		this.workHour = workHour;
+	public Employee(ArrayList<Integer> dailyWages){
+		this.dailyWages = dailyWages;
 	}
 
 	public String getTypeEmployee(){
@@ -17,12 +21,12 @@ public class Employee{
 		this.typeEmployee = typeEmployee;
 	}
 
-	public int getWorkHour(){
-		return this.workHour;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setWorkHour(int workHour){
-		this.workHour = workHour;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	public int getPay(){
@@ -33,9 +37,17 @@ public class Employee{
 		this.pay = pay;
 	}
 
+	public List<Integer> getDailyWages() {
+		return dailyWages;
+	}
+
+	public void setDailyWages(List<Integer> dailyWages) {
+		this.dailyWages = dailyWages;
+	}
+
 	@Override
 	public String toString(){
-		return "Type : " + this.typeEmployee + "\n WorkHour : " + this.workHour + "\n Total Pay : " + this.pay;
+		return "Type : " + this.typeEmployee + "\n Total Pay : " + this.pay;
 	}
 	
 }
