@@ -21,14 +21,14 @@ class Tester{
 		return choice;	
 	}
 
+
 	public static void main(String[] args){
 		try{
 			System.out.println("Welcome to Employee Wage Computation Program");
 			System.out.println("---------------------------------------------");
-			Random sysRand = new Random();
-			EmployeeWageComputeService computer = new EmployeeWageCompute();
-			Employee emp = new Employee(sysRand.nextInt(9));
-
+			EmployeeWageCompute computer = new EmployeeWageCompute();
+			computer.addCompanyWithEmployees("TATA", 30 , 20, 100);
+			/*
 			while(true){
 				int option = wageMenu();
 				switch(option){
@@ -54,7 +54,7 @@ class Tester{
 						System.out.println("Invalid Choice!!");
 						break;
 					}
-				}
+				}*/
 			}catch(InputMismatchException e){
 				System.out.println("Wrong Input by User, expected number");
 		}
