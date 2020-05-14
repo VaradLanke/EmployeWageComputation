@@ -9,9 +9,5 @@ public interface EmployeeWageComputeService{
 	public int generateRandomWorkHours(String companyName);
 	public void addCompanyWithEmployees(String companyName,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth);
 	public Company findCompany(String companyName);
-	/*public int calculatePay(Employee emp);
-	public String getTypeOfEmployee(Employee emp);
-	public int monthlyCalculatePay(Employee emp);
-	public int tillHundredCalculatePay(Employee emp);*/
 
 }

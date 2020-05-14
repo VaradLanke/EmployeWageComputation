@@ -5,8 +5,14 @@ import com.employeewage.solution.model.*;
 public class EmployeeWageCompute implements EmployeeWageComputeService{
 
 	private List<Company> companyList;
+	private Map<String,Company> companyHashMap;
 	/*private static final int dailyWagePerHour = 20;
 	private static final int fullDayHour = 8;*/
+
+	public EmployeeWageCompute(){
+		companyList = new ArrayList<>();
+		companyHashMap = new HashMap<>();
+	}
 
 	@Override
 	public boolean isPresent(Employee emp){
@@ -21,7 +27,9 @@ public class EmployeeWageCompute implements EmployeeWageComputeService{
 
 	public void addCompanyWithEmployees(String companyName,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){
 		Company cmp = new Company(companyName,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
-		cmp.setEmpList(createDummyEmployee(companyName, numOfWorkingDays));
+		//cmp.setEmpList(createDummyEmployee(companyName, numOfWorkingDays));
+		companyList.add(cmp);
+		companyHashMap.put(companyName, cmp);
 		System.out.println("Added Company with emp");
 	}
 
@@ -45,4 +53,21 @@ public class EmployeeWageCompute implements EmployeeWageComputeService{
 		}
 		return null;
 	}
+
+	public void computeEmpWage(){
+		for (Company company : companyList) {
+			company.setTotalEmpWage(this.computeEmpWage(company));
+		}
+	}
+
+	public int computeEmpWage(Company company){
+		int totalWage=0;
+		for (Employee emp : company.getEmpList()) {
+			for (int dailyWage : emp.getDailyWages()) {
+				totalWage += (dailyWage * company.getEmpRatePerHour());
+			}			
+		}
+		return totalWage;
+	}
+
 }
