@@ -1,5 +1,4 @@
 package com.employeewage.solution.model;
-import com.employeewage.solution.model.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
