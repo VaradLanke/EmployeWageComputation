@@ -11,7 +11,7 @@ public class Company {
     private int totalEmpWage;
     List<Employee> empList;
 
-    Company(String companyName,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){
+    public Company(String companyName,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth){
         this.companyName = companyName;
         this.empRatePerHour = empRatePerHour;
         this.numOfWorkingDays = numOfWorkingDays;

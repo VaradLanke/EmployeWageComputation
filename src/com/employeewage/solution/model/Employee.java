@@ -5,12 +5,22 @@ import java.util.List;
 
 public class Employee{
 
-	private String typeEmployee,companyName;
+	private String empName,typeEmployee,companyName;
 	private int pay;
 	private List<Integer> dailyWages;
 
-	public Employee(ArrayList<Integer> dailyWages){
+	public Employee(String empName, String companyName, ArrayList<Integer> dailyWages){
+		this.empName = empName;
+		this.companyName = companyName;
 		this.dailyWages = dailyWages;
+	}
+
+	public String getEmpName() {
+		return empName;
+	}
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 
 	public String getTypeEmployee(){
