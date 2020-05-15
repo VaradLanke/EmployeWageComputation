@@ -8,9 +8,9 @@ class Tester{
 	public static int wageMenu(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("---------------------------------------------");
-		System.out.println("1.Calculate-Todays Pay");
-		System.out.println("2.Calculate-Monthly Pay");
-		System.out.println("3.Calculate-Conditional Pay");
+		System.out.println("1.Add Company");
+		System.out.println("2.Calculate Total Wage");
+		System.out.println("3.Print All Employee Details");
 		System.out.println("4.Print Employee-Type");
 		System.out.println("5.Print Present/Absent");
 		System.out.println("6.Exit");
@@ -21,31 +21,55 @@ class Tester{
 		return choice;	
 	}
 
+	public static void addCompany( EmployeeWageCompute computer){
+		if(computer !=null){}
+		Scanner sc = new Scanner(System.in);
+		System.out.print("+CompanyName : ");
+		String cmpName = sc.next();
+		System.out.print("+Wage Per Hour : ");
+		int rate = sc.nextInt();
+		System.out.print("+No of Working Days Month : ");
+		int nowkDays = sc.nextInt();
+		System.out.print("+Max Hour per Month : ");
+		int maxhr = sc.nextInt();
+		computer.addCompanyWithEmployees(cmpName, rate , nowkDays, maxhr);
+	}
 
-	public static void main(String[] args){
+	public static void main( String[] args){
 		try{
 			System.out.println("Welcome to Employee Wage Computation Program");
 			System.out.println("---------------------------------------------");
 			EmployeeWageCompute computer = new EmployeeWageCompute();
-			computer.addCompanyWithEmployees("TATA", 30 , 20, 100);
-			/*
+			Scanner sc = new Scanner(System.in);
 			while(true){
-				int option = wageMenu();
+				 int option = wageMenu();
 				switch(option){
 					case 1:
-						System.out.println("<Todays Pay  : " + computer.calculatePay(emp)+">");
+							System.out.print("+CompanyName : ");
+							String cmpName = sc.next();
+							System.out.print("+Wage Per Hour : ");
+							int rate = sc.nextInt();
+							System.out.print("+No of Working Days Month : ");
+							int nowkDays = sc.nextInt();
+							System.out.print("+Max Hour per Month : ");
+							int maxhr = sc.nextInt();
+							computer.addCompanyWithEmployees(cmpName, rate , nowkDays, maxhr);
 						break;
 					case 2:
-						System.out.println("<Monthly Pay  : " + computer.monthlyCalculatePay(emp)+">");
+						System.out.print("+CompanyName : ");
+						String cmpNamecase2 = sc.next();
+						System.out.println("<Total Emp Wage for "+ cmpNamecase2 +" : "+ computer.getTotalCompanyEmpWage(cmpNamecase2)+">");
 						break;
 					case 3:
-						System.out.println("<Conditional Pay  : " + computer.tillHundredCalculatePay(emp)+">");
+						computer.prinAllDetails();
 						break;
 					case 4:
-						System.out.println("<Type : " + computer.getTypeOfEmployee(emp)+">");
+						System.out.print("+CompanyName : ");
+						String cmpNamecase3 = sc.next();
+						System.out.println("<Type : " + computer.getTypeOfEmployee(new Employee("name1", cmpNamecase3 , new ArrayList<Integer>()))+">");
 						break;
 					case 5:
-						System.out.println(computer.isPresent(emp) ? "<Present>" : "<Absent>");
+						System.out.println(computer.isPresent() ? "<Present>" : "<Absent>");
 						break;
 					case 6:
 						System.exit(0);
@@ -54,8 +78,8 @@ class Tester{
 						System.out.println("Invalid Choice!!");
 						break;
 					}
-				}*/
-			}catch(InputMismatchException e){
+				}
+			}catch( InputMismatchException e){
 				System.out.println("Wrong Input by User, expected number");
 		}
 	}	

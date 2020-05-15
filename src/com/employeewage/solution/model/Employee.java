@@ -57,7 +57,7 @@ public class Employee{
 
 	@Override
 	public String toString(){
-		return "Type : " + this.typeEmployee + "\n Total Pay : " + this.pay;
+		return "empName : " + this.empName + " Type : " + this.typeEmployee + " Total Pay : " + this.pay;
 	}
 	
 }
