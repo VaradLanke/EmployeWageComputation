@@ -11,9 +11,8 @@ class Tester{
 		System.out.println("1.Add Company");
 		System.out.println("2.Calculate Total Wage");
 		System.out.println("3.Print All Employee Details");
-		System.out.println("4.Print Employee-Type");
-		System.out.println("5.Print Present/Absent");
-		System.out.println("6.Exit");
+		//System.out.println("4.Print Present/Absent");
+		System.out.println("4.Exit");
 		System.out.println("---------------------------------------------");
 		System.out.println("Enter Choice : ");
 		int choice = sc.nextInt();
@@ -63,15 +62,10 @@ class Tester{
 					case 3:
 						computer.prinAllDetails();
 						break;
-					case 4:
-						System.out.print("+CompanyName : ");
-						String cmpNamecase3 = sc.next();
-						System.out.println("<Type : " + computer.getTypeOfEmployee(new Employee("name1", cmpNamecase3 , new ArrayList<Integer>()))+">");
-						break;
-					case 5:
+					/*case 4:
 						System.out.println(computer.isPresent() ? "<Present>" : "<Absent>");
-						break;
-					case 6:
+						break;*/
+					case 4:
 						System.exit(0);
 						break;
 					default:
