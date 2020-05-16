@@ -9,10 +9,11 @@ public class Employee{
 	private int pay;
 	private List<Integer> dailyWages;
 
-	public Employee(String empName, String companyName, ArrayList<Integer> dailyWages){
+	public Employee(String empName, String companyName, String typeEmployee, ArrayList<Integer> dailyWages){
 		this.empName = empName;
 		this.companyName = companyName;
 		this.dailyWages = dailyWages;
+		this.typeEmployee = typeEmployee;
 	}
 
 	public String getEmpName() {
@@ -57,7 +58,7 @@ public class Employee{
 
 	@Override
 	public String toString(){
-		return "empName : " + this.empName + " Type : " + this.typeEmployee + " Total Pay : " + this.pay;
+		return "<<empName : " + this.empName + " | Type : " + this.typeEmployee + " Total Pay : " + this.pay + " | DailyWageList : "+ dailyWages.toString()+">>";
 	}
 	
 }
