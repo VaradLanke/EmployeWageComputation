@@ -2,7 +2,7 @@ package com.employeewage.solution.service;
 import java.util.*;
 import com.employeewage.solution.model.*;
 
-public class EmployeeWageCompute implements EmployeeWageComputeService{
+public class EmployeeWageCompute implements IEmployeeWageComputeService{
 
 	private List<Company> companyList;
 	private Map<String,Company> companyHashMap;
@@ -19,16 +19,11 @@ public class EmployeeWageCompute implements EmployeeWageComputeService{
 	}
 
 	@Override
-	public String getTypeOfEmployee(Employee emp){
-		Company fcmp =  findCompany(emp.getCompanyName());
-		//System.out.println(fcmp.toString());
-		int totalEmpWage = this.computeEmpWage(emp) ;
-		if(totalEmpWage < ((fcmp.getMaxHoursPerMonth() * fcmp.getEmpRatePerHour())/2)){
-			emp.setTypeEmployee("Part-Time");
-			return "Part-Time";
+	public int getEmpRateByTypeOfEmployee(Employee emp, int empRatePerHour){
+		if(emp.getTypeEmployee().equalsIgnoreCase("part-time")){
+			return (empRatePerHour / 2);
 		}
-		emp.setTypeEmployee("Full-Time");
-		return "Full-Time";
+		return empRatePerHour;
 	}
 
 	public int generateRandomWorkHours(String companyName){
@@ -50,9 +45,13 @@ public class EmployeeWageCompute implements EmployeeWageComputeService{
 		ArrayList<Employee> empList = new ArrayList<>();
 		Employee e = null;
 		for(int i=0;i<10;i++){
-			e = new Employee("name"+i, companyName,new ArrayList<Integer>());
+			e = new Employee("name"+i, companyName,"part-time",new ArrayList<Integer>());
+			if(i>4){
+				e.setTypeEmployee("full-time");
+			}
 			for(int j=0;j<numOfWorkingDays;j++){
-				int dummyWage = (new Random().nextInt(9)) * empRatePerHour ;
+				int randWorkHour = new Random().nextInt(9);
+				int dummyWage = ( randWorkHour * (this.getEmpRateByTypeOfEmployee(e,empRatePerHour)));
 				e.getDailyWages().add(dummyWage);
 			}
 			empList.add(e);
@@ -88,36 +87,25 @@ public class EmployeeWageCompute implements EmployeeWageComputeService{
 	//totalCompanyWageCalculation
 	@Override
 	public int computeEmpWage(Company company){
-		int totalWage=0,totalWorkingHours=0;
+		int totalWage=0;
 		for (Employee emp : company.getEmpList()) {
-			//int empTotalWage=0;
-			for (int dailyWage : emp.getDailyWages()) {
-				if(totalWorkingHours < company.getMaxHoursPerMonth()){
-					totalWage += (dailyWage * company.getEmpRatePerHour());
-					totalWorkingHours += (dailyWage / company.getEmpRatePerHour());
-					//empTotalWage = totalWage;
-				}
-			}
-			//emp.setPay(empTotalWage);
+			totalWage += this.computeEmpWage(emp,company.getMaxHoursPerMonth(),company.getEmpRatePerHour()); // calculate monthly pay and set
 		}
 		return totalWage;
 	}
 
 	//totalEmployeeWageCalculation
 	@Override
-	public int computeEmpWage(Employee emp){
-		if(emp!=null){
-			Company fcmp =  findCompany(emp.getCompanyName());
-			if(fcmp!=null){
-				int totalWage=0;
-				for (int dailyWage : emp.getDailyWages()) {
-					totalWage += (dailyWage * fcmp.getEmpRatePerHour());
-				}
-				emp.setPay(totalWage);
-				return totalWage;
+	public int computeEmpWage(Employee emp, int maxHoursPerMonth,int empRatePerHour){
+		int totalWage=0,totalWorkingHours=0;
+		for (int dailyWage : emp.getDailyWages()) {
+			if(totalWorkingHours < maxHoursPerMonth){
+				totalWage += dailyWage;
+				totalWorkingHours += (dailyWage / empRatePerHour);
 			}
 		}
-		return 0;
+		emp.setPay(totalWage);
+		return totalWage;
 	}
 
 	@Override
@@ -132,11 +120,12 @@ public class EmployeeWageCompute implements EmployeeWageComputeService{
 	@Override
 	public void prinAllDetails(){
 		for(Company cmp : this.companyList){
-			System.out.println("--------------------*"+cmp.getCompanyName()+"*-----------------");
+			System.out.println("___________________*"+cmp.getCompanyName()+"*__________________");
 			for (Employee employee: cmp.getEmpList()) {
-				this.getTypeOfEmployee(employee);
+				//this.computeEmpWage();
 				System.out.println(employee.toString());
 			}
+			System.out.println("______________<Total Wage : "+cmp.getTotalEmpWage()+">_______________\n");
 		}
 	}
 
